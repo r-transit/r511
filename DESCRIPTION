@@ -19,6 +19,7 @@ Imports:
     tibble,
     httr,
     xml2,
+    assertthat
 Suggests: testthat,
     knitr,
     rmarkdown
