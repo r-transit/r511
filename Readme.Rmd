@@ -1,0 +1,80 @@
+---
+title: "r511 Readme"
+author: "Tom Buckley"
+date: "7/9/2018"
+output: 
+  github_document:
+    toc: true
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  cache = FALSE,
+  comment = "#>",
+  message = FALSE,
+  error = FALSE,
+  warning = FALSE,
+  fig.path = "README/README-",
+  fig.width=7.3,
+  fig.height=5,
+  out.width = '100%'
+)
+
+knitr::opts_chunk$set(echo = TRUE)
+library(r511)
+```
+
+## Set your api key as an environmental variable
+
+If you don't have a key, you can get one here:  
+https://511.org/developers/list/tokens/create
+
+```{r}
+#Sys.setenv(APIKEY511="yourkeyhere")
+```
+
+## Get MTC 511 Operator List
+
+This function pulls a list of operator names, modes, and private codes. The latter we use to make requests for GTFS data. 
+
+```{r}
+operator_df <- get_511_metadata()
+head(operator_df)
+```
+
+## Get URL for GTFS Data
+
+You can use the get_511_url() function to build a URL from which you can directly download GTFS data for an operator. 
+
+```{r}
+bart_code <- operator_df[operator_df$name=='Bay Area Rapid Transit',]$privatecode
+bart_gtfs_url <- get_511_url(bart_code)
+```
+
+## Import Data
+
+Using [trread](https://github.com/r-gtfs/trread), load BART data into R as a list of dataframes. 
+
+```{r}
+library(trread)
+bart_gtfs_data <- import_gtfs(bart_gtfs_url)
+```
+
+## Example: Summarise Stops Per Route
+
+Summarise the number of stops per route on BART. 
+
+```{r, message=FALSE, warning=FALSE}
+library(dplyr)
+attach(bart_gtfs_data)
+
+routes_df %>% inner_join(trips_df, by="route_id") %>%
+  inner_join(stop_times_df, by="trip_id") %>% 
+    inner_join(stops_df, by="stop_id") %>% 
+      group_by(route_long_name) %>%
+        summarise(stop_count=n_distinct(stop_id)) %>%
+  arrange(desc(stop_count))
+```
+
+

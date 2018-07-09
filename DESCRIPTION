@@ -1,0 +1,26 @@
+Package: r511
+Type: Package
+Title: Work with the Bay Area Transportation Commission Application Programming Interface
+Version: 0.1.0
+Author: Tom Buckley
+Maintainer: Tom Buckley <tom@tbuckl.com>
+Description: For the 9 counties in the San Francisco Bay area 
+    the Metropolitan Transportation Commission (MTC) 
+    maintains an Application Programming Interface (API)
+    with information on more than 20 transit operators. 
+    This package allows users to retrieve
+    information about transit schedules in the General Transit Feed Specification
+    as published on the MTC API. 
+License: GPL
+Encoding: UTF-8
+LazyData: true
+Imports:
+    dplyr,
+    tibble,
+    httr,
+    xml2,
+Suggests: testthat,
+    knitr,
+    rmarkdown
+RoxygenNote: 6.0.1
+VignetteBuilder: knitr
