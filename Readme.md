@@ -16,6 +16,7 @@ package:
     }
     devtools::install_github('r-gtfs/r511')
 
+##Usage 
 
 -   [Set your api key as an environmental variable](#set-your-api-key-as-an-environmental-variable)
 -   [Get MTC 511 Operator List](#get-mtc-511-operator-list)
