@@ -1,3 +1,6 @@
+[![Travis-CI Build Status](https://travis-ci.com/r-gtfs/r511.svg?branch=master)](https://travis-ci.com/r-gtfs/r511)
+[![cran version](https://www.r-pkg.org/badges/version/r511)](https://cran.r-project.org/package=r511)
+
 r511 Readme
 ================
 Tom Buckley
