@@ -6,6 +6,17 @@ r511 Readme
 Tom Buckley
 7/9/2018
 
+## Installation
+
+Until the package is published on CRAN, you can install this package from GitHub using the devtools
+package:
+
+    if (!require(devtools)) {
+        install.packages('devtools')
+    }
+    devtools::install_github('r-gtfs/r511')
+
+
 -   [Set your api key as an environmental variable](#set-your-api-key-as-an-environmental-variable)
 -   [Get MTC 511 Operator List](#get-mtc-511-operator-list)
 -   [Get URL for GTFS Data](#get-url-for-gtfs-data)
